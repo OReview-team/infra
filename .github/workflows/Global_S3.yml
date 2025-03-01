@@ -6,7 +6,7 @@ on:
       tasksByTerraform:
         description: 'Terraform 실행 작업 선택'
         required: true
-        default: 'plan'
+        default: 'planToApply'
         options:
           - 'validate'
           - 'planToApply'
