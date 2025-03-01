@@ -95,22 +95,22 @@ jobs:
             let info;
             let outcome;
             
-            if(${{ process.env.TASK }} == 'validate') {
+            if(${ process.env.TASK } == 'validate') {
               info = ${{ steps.validate.outputs.stdout }};
               outcome = ${{ steps.validate.outcome }};
             }
             
-            if(${{ process.env.TASK }} == 'planToApply' || ${{ process.env.TASK }} == 'planToDestroy') {
+            if(${ process.env.TASK } == 'planToApply' || ${{ process.env.TASK }} == 'planToDestroy') {
               info = ${{ steps.plan.outputs.stdout }};
               outcome = ${{ steps.plan.outcome }};
             }
             
-            if(${{ process.env.TASK }} == 'apply') {
+            if(${ process.env.TASK } == 'apply') {
               info = ${{ steps.apply.outputs.stdout }};
               outcome = ${{ steps.apply.outcome }};
             }
             
-            if(${{ process.env.TASK }} == 'destroy') {
+            if(${ process.env.TASK } == 'destroy') {
               info = ${{ steps.destroy.outputs.stdout }};
               outcome = ${{ steps.destroy.outcome }};
             }
