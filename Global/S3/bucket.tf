@@ -47,6 +47,11 @@ resource "aws_s3_bucket_cors_configuration" "OR_bucket_cors" {
 
   bucket = aws_s3_bucket.OR_bucket[each.key].id
 
+  cors_rule {
+    allowed_methods = ["GET"]
+    allowed_origins = ["*"]
+  }
+
   depends_on = [
     aws_s3_bucket.OR_bucket
   ]
