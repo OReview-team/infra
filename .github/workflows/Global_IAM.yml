@@ -98,14 +98,13 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const issue = await github.rest.issues.create({
-                owner,
-                repo,
-                title: 'Terraform 실행 결과',
-                body: 'Terraform 실행 결과를 확인해주세요.',
-                assignee: '${{ github.actor }}'
-                })
-            
-            console.log(issue);
+                  owner,
+                  repo,
+                  title: 'Terraform 실행 결과',
+                  body: 'Terraform 실행 결과를 확인해주세요.',
+                  assignee: '${{ github.actor }}',
+                  labels: ['Terraform', process.env.Task, result]
+                });
             
             if(process.env.TASK == 'validate') {
               info = `\`${{ steps.validate.outputs.stdout }}\``;
@@ -145,8 +144,8 @@ jobs:
             `;
 
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: issue.data.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: output
-            })
+            });
