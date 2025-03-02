@@ -105,6 +105,8 @@ jobs:
                 assignee: '${{ github.actor }}'
                 })
             
+            console.log(issue);
+            
             if(process.env.TASK == 'validate') {
               info = `\`${{ steps.validate.outputs.stdout }}\``;
               outcome = `\`${{ steps.validate.outcome }}\``;
@@ -143,7 +145,7 @@ jobs:
             `;
 
             github.rest.issues.createComment({
-              issue_number: issue.number,
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: output
