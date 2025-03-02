@@ -102,7 +102,6 @@ jobs:
                 title: 'Terraform 실행 결과',
                 body: 'Terraform 실행 결과를 확인해주세요.',
                 assignee: '${{ github.actor }}'
-                labels: ['terraform', `${process.env.TASK}`, 'result']
                 })
             
             if(process.env.TASK == 'validate') {
@@ -111,18 +110,18 @@ jobs:
             }
             
             if(process.env.TASK == 'planToApply' || process.env.TASK == 'planToDestroy') {
-              info = '${{ steps.validate.outputs.stdout }}';
-              outcome = '${{ steps.validate.outcome }}';
+              info = '${{ steps.plan.outputs.stdout }}';
+              outcome = '${{ steps.plan.outcome }}';
             }
             
             if(process.env.TASK == 'apply') {
-              info = '${{ steps.validate.outputs.stdout }}';
-              outcome = '${{ steps.validate.outcome }}';
+              info = '${{ steps.apply.outputs.stdout }}';
+              outcome = '${{ steps.apply.outcome }}';
             }
             
             if(process.env.TASK == 'destroy') {
-              info = '${{ steps.validate.outputs.stdout }}';
-              outcome = '${{ steps.validate.outcome }}';
+              info = '${{ steps.destroy.outputs.stdout }}';
+              outcome = '${{ steps.destroy.outcome }}';
             }
             
             const output = `
