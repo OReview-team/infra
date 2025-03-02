@@ -96,26 +96,27 @@ jobs:
             let outcome;
             
             if(process.env.TASK == 'validate') {
-              info = ${{ steps.validate.outputs.stdout }};
-              outcome = ${{ steps.validate.outcome }};
+              info = `\`${{ steps.validate.outputs.stdout }}\``;
+              outcome = `\`${{ steps.validate.outcome }}\``;
             }
             
             if(process.env.TASK == 'planToApply' || process.env.TASK == 'planToDestroy') {
-              info = ${{ steps.plan.outputs.stdout }};
-              outcome = ${{ steps.plan.outcome }};
+              info = `\`${{ steps.plan.outputs.stdout }}\``;
+              outcome = `\`${{ steps.plan.outcome }}\``;
             }
             
             if(process.env.TASK == 'apply') {
-              info = ${{ steps.apply.outputs.stdout }};
-              outcome = ${{ steps.apply.outcome }};
+              info = `\`${{ steps.apply.outputs.stdout }}\``;
+              outcome = `\`${{ steps.apply.outcome }}\``;
             }
             
             if(process.env.TASK == 'destroy') {
-              info = ${{ steps.destroy.outputs.stdout }};
-              outcome = ${{ steps.destroy.outcome }};
+              info = `\`${{ steps.destroy.outputs.stdout }}\``;
+              outcome = `\`${{ steps.destroy.outcome }}\``;
             }
             
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            const output = `
+            #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             
             #### Terraform \`${process.env.TASK}\` 🚀\`${outcome}\`
@@ -128,7 +129,8 @@ jobs:
 
             </details>
             
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*
+            `;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
