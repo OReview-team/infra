@@ -102,27 +102,27 @@ jobs:
                 title: 'Terraform 실행 결과',
                 body: 'Terraform 실행 결과를 확인해주세요.',
                 assignee: '${{ github.actor }}'
-                labels: ['terraform', process.env.TASK, 'result']
+                labels: ['terraform', `${process.env.TASK}`, 'result']
                 })
             
             if(process.env.TASK == 'validate') {
-              info = `\`${{ steps.validate.outputs.stdout }}\``;
-              outcome = `\`${{ steps.validate.outcome }}\``;
+              info = '${{ steps.validate.outputs.stdout }}';
+              outcome = '${{ steps.validate.outcome }}';
             }
             
             if(process.env.TASK == 'planToApply' || process.env.TASK == 'planToDestroy') {
-              info = `\`${{ steps.plan.outputs.stdout }}\``;
-              outcome = `\`${{ steps.plan.outcome }}\``;
+              info = '${{ steps.validate.outputs.stdout }}';
+              outcome = '${{ steps.validate.outcome }}';
             }
             
             if(process.env.TASK == 'apply') {
-              info = `\`${{ steps.apply.outputs.stdout }}\``;
-              outcome = `\`${{ steps.apply.outcome }}\``;
+              info = '${{ steps.validate.outputs.stdout }}';
+              outcome = '${{ steps.validate.outcome }}';
             }
             
             if(process.env.TASK == 'destroy') {
-              info = `\`${{ steps.destroy.outputs.stdout }}\``;
-              outcome = `\`${{ steps.destroy.outcome }}\``;
+              info = '${{ steps.validate.outputs.stdout }}';
+              outcome = '${{ steps.validate.outcome }}';
             }
             
             const output = `
