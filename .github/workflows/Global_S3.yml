@@ -102,7 +102,7 @@ jobs:
                   title: 'Terraform 실행 결과',
                   body: 'Terraform 실행 결과를 확인해주세요.',
                   assignee: '${{ github.actor }}',
-                  labels: ['Terraform', process.env.Task, result]
+                  labels: ['Terraform', process.env.Task, 'result']
                 });
             
             if(process.env.TASK == 'validate') {
