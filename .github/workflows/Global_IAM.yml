@@ -100,7 +100,7 @@ jobs:
             const issue = await github.rest.issues.create({
                   owner,
                   repo,
-                  title: 'Terraform 실행 결과',
+                  title: `Terraform ${process.env.TASK} 실행 결과`,
                   body: 'Terraform 실행 결과를 확인해주세요.',
                   assignee: '${{ github.actor }}',
                   labels: ['Terraform', process.env.TASK, 'result']
