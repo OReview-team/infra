@@ -116,8 +116,8 @@ jobs:
             }
             
             if(process.env.TASK == 'planToApply' || process.env.TASK == 'planToDestroy') {
-              info = `\`${{ steps.plan.outputs.stdout }}\``;
-              outcome = `\`${{ steps.plan.outcome }}\``;
+              info = process.env.TASK == 'planToApply' ? `\`${{ steps.planToApply.outputs.stdout }}\`` : `\`${{ steps.planToDestroy.outputs.stdout }}\``;
+              outcome = process.env.TASK == 'planToApply' ? `\`${{ steps.planToApply.outputs.stdout }}\`` : `\`${{ steps.planToDestroy.outputs.stdout }}\``;
             }
             
             if(process.env.TASK == 'apply') {
