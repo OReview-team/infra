@@ -8,13 +8,13 @@ terraform {
 }
 
 resource "aws_vpc" "virtual_private_cloud" {
-  cidr_block = "192.168.0.0/20"
-  instance_tenancy = "default"
+  cidr_block           = "192.168.0.0/20"
+  instance_tenancy     = "default"
   enable_dns_hostnames = true # 해당 VPC 내 인스턴스에 Public DNS 호스트 이름을 할당할지 여부
 
   tags = {
     Service_Name = var.service_name
-    Environment = var.environment
+    Environment  = var.environment
   }
 }
 
@@ -23,13 +23,8 @@ resource "aws_internet_gateway" "vpc_igw" {
 
   tags = {
     Service_Name = var.service_name
-    Environment = var.environment
+    Environment  = var.environment
   }
-}
-
-resource "aws_internet_gateway_attachment" "" {
-  internet_gateway_id = ""
-  vpc_id              = ""
 }
 
 resource "aws_eip" "eip_nat" {
@@ -37,7 +32,7 @@ resource "aws_eip" "eip_nat" {
 
   tags = {
     Service_Name = var.service_name
-    Environment = var.environment
+    Environment  = var.environment
   }
 }
 

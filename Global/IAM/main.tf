@@ -15,4 +15,3 @@ provider "aws" {
 module "group_admin" {
   source = "./admin"
 }
-
